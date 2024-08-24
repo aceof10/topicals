@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: topicals
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/topicals
+    username: ${DB_USER}
+    password: ${DB_PWD}
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MariaDBDialect
