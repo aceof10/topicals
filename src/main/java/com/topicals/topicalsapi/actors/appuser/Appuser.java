@@ -1,7 +1,9 @@
 package com.topicals.topicalsapi.actors.appuser;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.topicals.topicalsapi.role.AppUserRole;
+import com.topicals.topicalsapi.token.Token;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,10 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -59,6 +58,11 @@ public class Appuser implements UserDetails {
     @ElementCollection(targetClass = AppUserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(joinColumns = @JoinColumn(name = "user_id"))
     private Set<AppUserRole> roles;
+
+    @JsonIgnore
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokenList;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
