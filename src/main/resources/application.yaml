@@ -3,10 +3,10 @@ spring:
     name: topicals
 
   datasource:
-    url: jdbc:mariadb://localhost:3306/topicals
+    url: jdbc:mysql://localhost:3306/topicals_db
     username: ${TOPICALS_DB_USER}
     password: ${TOPICALS_DB_PWD}
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   
   sql:
     init:
@@ -18,5 +18,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate.dialect: org.hibernate.dialect.MariaDBDialect
+
+application:
+  security:
+    jwt:
+      secret-key: ${TOPICALS_SECRET}
+      expiration: ${TOPICALS_JWT_EXP}
+      refresh-token:
+        expiration: {TOPICALS_REFRESH_EXP}
