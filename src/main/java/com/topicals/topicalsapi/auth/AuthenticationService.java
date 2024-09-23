@@ -48,20 +48,13 @@ public class AuthenticationService {
                     .createdAt(LocalDateTime.now())
                     .build();
 
-            var userInDB = userRepository.save(user);
+            userRepository.save(user);
 
-            Map<String, Object> extraClaims = new HashMap<>();
-            extraClaims.put("roles", userInDB.getRoles());
-
-            var jwtToken = jwtService.generateToken(extraClaims, userInDB);
-
-            saveUserToken(userInDB, jwtToken);
-            return "Signup successful. Proceed to login.";
-
+            return "Success.";
         } catch (AlreadyExistsException e) {
-            return "Email already registered. Please use a different email or proceed to login.";
+            return "Already exists.";
         } catch (Exception e) {
-            return "An error occurred during signup. Please try again.";
+            return "An unexpected error occurred.";
         }
     }
 
