@@ -1,6 +1,6 @@
 package com.topicals.topicalsapi.content.lessonContent;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.topicals.topicalsapi.actors.author.Author;
 import com.topicals.topicalsapi.content.lesson.Lesson;
 import jakarta.persistence.*;
@@ -26,12 +26,12 @@ public class LessonContent {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Lesson lesson;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Author author;
 
     @Column(columnDefinition = "TEXT", nullable = false)
