@@ -7,7 +7,7 @@ spring:
     username: ${TOPICALS_DB_USER}
     password: ${TOPICALS_DB_PWD}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  
+
   sql:
     init:
       mode: never
@@ -25,4 +25,4 @@ application:
       secret-key: ${TOPICALS_SECRET}
       expiration: ${TOPICALS_JWT_EXP}
       refresh-token:
-        expiration: {TOPICALS_REFRESH_EXP}
+        expiration: ${TOPICALS_REFRESH_EXP}
