@@ -1,7 +1,7 @@
 package com.topicals.topicalsapi.content.lesson;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.topicals.topicalsapi.content.lessonContent.LessonContent;
 import com.topicals.topicalsapi.content.module.Module;
 import jakarta.persistence.*;
@@ -40,7 +40,7 @@ public class Lesson {
     private Module module;
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonIgnore
     private List<LessonContent> lessonContentList;
 
     @CreatedDate
